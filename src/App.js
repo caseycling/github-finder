@@ -18,22 +18,6 @@ const App = () => {
   const [loading, setLoading] = useState(false)
   const [alert, setAlert] = useState(null)
 
-  //Get user repos
-  const getUserRepos = async (username) => {
-    setLoading(true)
-
-    const res = await axios.get(
-      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${
-      process.env.REACT_APP_GITHUB_CLIENT_ID
-      }&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_ID}`
-    )
-    console.log(res)
-
-    //Populate users repos in state with results 
-    setRepos(res.data);
-    setLoading(false);
-  }
-
   //Set alert
   const showAlert = (msg, type) => {
     setAlert({ msg: msg, type: type });
@@ -60,9 +44,7 @@ const App = () => {
                 </Fragment>
               )} />
               <Route exact path='/about' component={About} />
-              <Route exact path='/user/:login' render={props => (
-                <User {...props} getUserRepos={getUserRepos} repos={repos} loading={loading} />
-              )} />
+              <Route exact path='/user/:login' component={User}/>
             </Switch>
           </div>
         </div>

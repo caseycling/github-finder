@@ -102,9 +102,9 @@ const User = ({ match }) => {
 
 }
 
-User.propTypes = {
-    repo: PropTypes.array.isRequired,
-    getUserRepos: PropTypes.func.isRequired
-}
+// User.propTypes = {
+//     repo: PropTypes.array.isRequired,
+//     getUserRepos: PropTypes.func.isRequired
+// }
 
 export default User
